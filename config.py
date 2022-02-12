@@ -254,6 +254,10 @@ def configure(keymap):
     # Emacs のキーバインドに“したくない”アプリケーションソフトを指定する
     # （Keyhac のメニューから「内部ログ」を ON にすると processname や classname を確認することができます）
     fc.not_emacs_target     = ["wsl.exe",                # WSL
+                               "wslg.exe",
+                               "skks.exe",
+                               "skkx.exe",
+                               "skk.exe",
                                "bash.exe",               # WSL
                                "ubuntu.exe",             # WSL
                                "ubuntu1604.exe",         # WSL
@@ -374,10 +378,10 @@ def configure(keymap):
 
     # スクロールに使うキーの組み合わせ（Up、Down の順）を指定する
     # fc.scroll_key = None # PageUp、PageDownキーのみを利用する
-    fc.scroll_key = ["M-v", "C-v"]
+    fc.scroll_key = ["A-v", "C-v"]
 
     # Emacs日本語入力モードを使うかどうかを指定する（True: 使う、False: 使わない）
-    fc.use_emacs_ime_mode = True
+    fc.use_emacs_ime_mode = False
 
     # Emacs日本語入力モードが有効なときに表示するバルーンメッセージを指定する
     # fc.emacs_ime_mode_balloon_message = None
@@ -1781,7 +1785,7 @@ def configure(keymap):
     define_key(keymap_emacs, "M-S-Period", reset_search(reset_undo(reset_counter(mark(end_of_buffer, True)))))
     define_key(keymap_emacs, "M-g g",      reset_search(reset_undo(reset_counter(reset_mark(goto_line)))))
     define_key(keymap_emacs, "M-g M-g",    reset_search(reset_undo(reset_counter(reset_mark(goto_line)))))
-    define_key(keymap_emacs, "C-l",        reset_search(reset_undo(reset_counter(recenter))))
+    # define_key(keymap_emacs, "C-l",        reset_search(reset_undo(reset_counter(recenter))))
 
     define_key(keymap_emacs, "C-S-b", reset_search(reset_undo(reset_counter(mark2(repeat(backward_char), False)))))
     define_key(keymap_emacs, "C-S-f", reset_search(reset_undo(reset_counter(mark2(repeat(forward_char), True)))))
@@ -1881,7 +1885,7 @@ def configure(keymap):
     ## 「その他」のキー設定
     define_key(keymap_emacs, "Enter",     reset_undo(reset_counter(reset_mark(repeat(newline)))))
     define_key(keymap_emacs, "C-m",       reset_undo(reset_counter(reset_mark(repeat(newline)))))
-    define_key(keymap_emacs, "C-j",       reset_undo(reset_counter(reset_mark(newline_and_indent))))
+    # define_key(keymap_emacs, "C-j",       reset_undo(reset_counter(reset_mark(newline_and_indent))))
     define_key(keymap_emacs, "C-o",       reset_undo(reset_counter(reset_mark(repeat(open_line)))))
     define_key(keymap_emacs, "Tab",       reset_undo(reset_counter(reset_mark(repeat(indent_for_tab_command)))))
     define_key(keymap_emacs, "C-g",       reset_search(reset_counter(reset_mark(keyboard_quit))))
@@ -1896,6 +1900,7 @@ def configure(keymap):
     if fc.scroll_key:
         define_key(keymap_emacs, fc.scroll_key[0], reset_search(reset_undo(reset_counter(mark(scroll_up, False)))))
         define_key(keymap_emacs, fc.scroll_key[1], reset_search(reset_undo(reset_counter(mark(scroll_down, True)))))
+        define_key(keymap_emacs, "C-OpenBracket v", reset_search(reset_undo(reset_counter(mark(scroll_up, False)))))
 
     ## 「カット」のキー設定
     if fc.ctl_x_prefix_key != "C-x":
@@ -2522,6 +2527,8 @@ def configure(keymap):
 
     # クリップボードリストを起動する
     define_key(keymap_global, fc.clipboardList_key, lw_clipboardList)
+
+    define_key(keymap_emacs, "C-OpenBracket y", lw_clipboardList)
 
     # 個人設定ファイルのセクション [section-clipboardList-2] を読み込んで実行する
     exec(readConfigPersonal("[section-clipboardList-2]"), dict(globals(), **locals()))
