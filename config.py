@@ -302,19 +302,19 @@ def configure(keymap):
 
     # IME の切り替え“のみをしたい”アプリケーションソフトを指定する
     # （指定できるアプリケーションソフトは、not_emacs_target で（除外）指定したものからのみとなります）
-    fc.ime_target           = ["wsl.exe",                # WSL
-                               "bash.exe",               # WSL
-                               "ubuntu.exe",             # WSL
-                               "ubuntu1604.exe",         # WSL
-                               "ubuntu1804.exe",         # WSL
-                               "ubuntu2004.exe",         # WSL
+    fc.ime_target           = [#"wsl.exe",                # WSL
+                               #"bash.exe",               # WSL
+                               #"ubuntu.exe",             # WSL
+                               #"ubuntu1604.exe",         # WSL
+                               #"ubuntu1804.exe",         # WSL
+                               #"ubuntu2004.exe",         # WSL
                                "debian.exe",             # WSL
                                "kali.exe",               # WSL
                                "SLES-12.exe",            # WSL
                                "openSUSE-42.exe",        # WSL
                                "openSUSE-Leap-15-1.exe", # WSL
-                               "WindowsTerminal.exe",    # Windows Terminal
-                               "mintty.exe",             # mintty
+                               #"WindowsTerminal.exe",    # Windows Terminal
+                               #"mintty.exe",             # mintty
                                "Cmder.exe",              # Cmder
                                "ConEmu.exe",             # ConEmu
                                "ConEmu64.exe",           # ConEmu
@@ -539,7 +539,7 @@ def configure(keymap):
     fc.use_alt_shift_digit_key_for_f13_to_f24 = False
 
     # 表示しているウィンドウの中で、一番最近までフォーカスがあったウィンドウに移動するキーを指定する
-    fc.other_window_key = "A-o"
+    fc.other_window_key = ""
 
     # アクティブウィンドウを切り替えるキーの組み合わせ（前、後 の順）を指定する（複数指定可）
     # （内部で A-Tab による切り替えを行っているため、設定するキーは Altキーとの組み合わせとしてください）
@@ -557,7 +557,7 @@ def configure(keymap):
 
     # ウィンドウを最小化、リストアするキーの組み合わせ（リストア、最小化 の順）を指定する（複数指定可）
     fc.window_minimize_key = []
-    fc.window_minimize_key += [["A-S-m", "A-m"]]
+    # fc.window_minimize_key += [["A-S-m", "A-m"]]
 
     # ウィンドウのリストアが最小化した順番の逆順とならない場合の対策を行うかを指定する
     # （True: 対策有、False: 対策無）
@@ -597,14 +597,14 @@ def configure(keymap):
     fc.clipboardList_key = "A-y"
 
     # ランチャーリストを起動するキーを指定する
-    fc.lancherList_key = "A-l"
+    fc.lancherList_key = "W-w"
 
     # shell_command 関数で起動するアプリケーションソフトを指定する
     # （PATH が通っていない場所にあるコマンドは、絶対パスで指定してください）
     fc.command_name = r"cmd.exe"
 
     # コマンドのリピート回数の最大値を指定する
-    fc.repeat_max = 1024
+    fc.repeat_max = 128
 
     # Microsoft Excel のセル内で改行を選択可能かを指定する（True: 選択可、False: 選択不可）
     # （kill_line 関数の挙動を変えるための変数です。Microsoft Excel 2019 以降では True にして

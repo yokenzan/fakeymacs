@@ -51,6 +51,7 @@ fc.not_emacs_target     = ["wsl.exe",                # WSL
                            "skks.exe",
                            "skkx.exe",
                            "skk.exe",
+                           "idea64.exe",
                            "bash.exe",               # WSL
                            "ubuntu.exe",             # WSL
                            "ubuntu1604.exe",         # WSL
@@ -125,7 +126,7 @@ fc.side_of_ctrl_key = "L"
 
 # Escキーを Metaキーとして使うかどうかを指定する（True: 使う、False: 使わない）
 # （True（Metaキーとして使う）に設定されている場合、ESC の二回押下で ESC が入力されます）
-fc.use_esc_as_meta = True
+fc.use_esc_as_meta = False
 
 # Emacs日本語入力モードを使うかどうかを指定する（True: 使う、False: 使わない）
 fc.use_emacs_ime_mode = False
@@ -193,7 +194,7 @@ fc.reverse_window_to_restore = False
 
 # 定型文
 fc.age_items = [
-    ["生年月日一般",        datetime.date(datetime.date.today().year - 73, 7, 28).strftime("%Y.%m.%d")],
+    ["生年月日一般",        datetime.date(datetime.date.today().year - 50, 7, 28).strftime("%Y.%m.%d")],
     ["生年月日後期高齢者",  datetime.date(datetime.date.today().year - 80, 7, 28).strftime("%Y.%m.%d")],
     ["生年月日高齢受給者",  datetime.date(datetime.date.today().year - 72, 7, 28).strftime("%Y.%m.%d")],
     ["生年月日未就学児",    datetime.date(datetime.date.today().year -  3, 7, 28).strftime("%Y.%m.%d")],
@@ -309,7 +310,7 @@ if 1:
 # --------------------------------------------------------------------------------------------------
 
 # Everything を起動するキーを指定する
-if 0:
+if 1:
     exec(readConfigExtension(r"everything\config.py"), dict(globals(), **locals()))
 
 # --------------------------------------------------------------------------------------------------
@@ -369,7 +370,7 @@ if 0:
 # --------------------------------------------------------------------------------------------------
 
 # 指定したキーを押下したときに IME の状態を表示する
-if 0:
+if 1:
     fc.pop_ime_balloon_key = ["C-Semicolon"]
     # fc.pop_ime_balloon_key = ["O-" + fc.side_of_ctrl_key + "Ctrl"] # Ctrl キーの単押し
     exec(readConfigExtension(r"pop_ime_balloon\config.py"), dict(globals(), **locals()))

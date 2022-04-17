@@ -9,7 +9,7 @@ try:
     fc.everything_key
 except:
     # Everything を起動するキーを指定する
-    fc.everything_key = "C-A-v"
+    fc.everything_key = "W-s"
 
 try:
     # 設定されているか？
