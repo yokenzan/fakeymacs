@@ -388,3 +388,14 @@ if 0:
     exec(readConfigExtension(r"zenkaku_hankaku\config.py"), dict(globals(), **locals()))
 
 # --------------------------------------------------------------------------------------------------
+
+# MinTTY を起動するキーを指定する
+if 1:
+    exec(readConfigExtension(r"mintty\config.py"), dict(globals(), **locals()))
+
+# --------------------------------------------------------------------------------------------------
+
+# MinGW Emacs を起動するキーを指定する
+if 1:
+    exec(readConfigExtension(r"mingw_emacs\config.py"), dict(globals(), **locals()))
+
