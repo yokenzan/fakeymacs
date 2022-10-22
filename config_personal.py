@@ -21,12 +21,10 @@ print(startupString())
 # def editor(path):
 #     shellExecute( None, None, r"wslg.exe ~ -d Ubuntu-20.04 emacs27 ", '"%s"'% path, "" )
 
-keymap.editor = r"notepad.exe"
+keymap.editor = r"C:\Users\ballo\tools\sakura\sakura.exe"
 # keymap.editor = editor
 # keymap.editor = r"wslg.exe ~ -d Ubuntu-20.04 emacs27 "
-keymap.setFont("VL ゴシック", 16)
-
-# keymap["A-Q"] = "Q>"
+keymap.setFont("Sarasa Term Slab TC", 16)
 
 ####################################################################################################
 ## 機能オプションの選択
@@ -65,6 +63,7 @@ fc.not_emacs_target     = ["wsl.exe",                # WSL
                            "mstsc.exe",              # Remote Desktop
                            "WindowsTerminal.exe",    # Windows Terminal
                            "mintty.exe",             # mintty
+                           "wsltty.exe",             # mintty
                            "Cmder.exe",              # Cmder
                            "ConEmu.exe",             # ConEmu
                            "ConEmu64.exe",           # ConEmu
@@ -194,26 +193,29 @@ fc.reverse_window_to_restore = False
 
 # 定型文
 fc.age_items = [
-    ["生年月日一般",        datetime.date(datetime.date.today().year - 50, 7, 28).strftime("%Y.%m.%d")],
-    ["生年月日後期高齢者",  datetime.date(datetime.date.today().year - 80, 7, 28).strftime("%Y.%m.%d")],
-    ["生年月日高齢受給者",  datetime.date(datetime.date.today().year - 72, 7, 28).strftime("%Y.%m.%d")],
     ["生年月日未就学児",    datetime.date(datetime.date.today().year -  3, 7, 28).strftime("%Y.%m.%d")],
+    ["生年月日一般",        datetime.date(datetime.date.today().year - 50, 7, 28).strftime("%Y.%m.%d")],
+    ["生年月日高齢受給者",  datetime.date(datetime.date.today().year - 72, 7, 28).strftime("%Y.%m.%d")],
+    ["生年月日後期高齢者",  datetime.date(datetime.date.today().year - 80, 7, 28).strftime("%Y.%m.%d")],
 ]
-fc.insurer_number_items = [
-    ["01協会けんぽ", "01010016"],
-    ["69国保",       "010108"],
-    ["54指定難病",   "54016019"],
-    # ["---------+ x 8", "---------+" * 8],
-    # ["メールアドレス", "user_name@domain_name"],
-    # ["住所",           "〒999-9999 ＮＮＮＮＮＮＮＮＮＮ"],
-    # ["電話番号",       "99-999-9999"],
-]
-fc.fixed_items[0][0] = list_formatter.format(fc.fixed_items[0][0])
+# fc.insurer_number_items = [
+#     ["69国保",       "010108"],
+#     ["39後期高齢",   "39016019"],
+#     ["01協会けんぽ", "01010016"],
+#     ["54指定難病",   "54016019"],
+#     # ["---------+ x 8", "---------+" * 8],
+#     # ["メールアドレス", "user_name@domain_name"],
+#     # ["住所",           "〒999-9999 ＮＮＮＮＮＮＮＮＮＮ"],
+#     # ["電話番号",       "99-999-9999"],
+# ]
+# fc.fixed_items[0][0] = list_formatter.format(fc.fixed_items[0][0])
 
 # 日時
 fc.datetime_items = [
     ["YYYY.MM.DD",          dateAndTime("%Y.%m.%d")],
     ["YYYY-MM-DD",          dateAndTime("%Y-%m-%d")],
+    ["2022-04-01",          datetime.datetime(2022, 4, 1).strftime("%Y.%m.%d")],
+    ["2022.04.01",          datetime.datetime(2022, 4, 1).strftime("%Y-%m-%d")],
     ["HH:MM:SS",            dateAndTime("%H:%M:%S")],
     ["YYYYMMDD_HHMMSS",     dateAndTime("%Y%m%d_%H%M%S")],
     ["YYYYMMDD",            dateAndTime("%Y%m%d")],
@@ -222,9 +224,9 @@ fc.datetime_items = [
 fc.datetime_items[0][0] = list_formatter.format(fc.datetime_items[0][0])
 
 fc.clipboardList_listers = [
-    ["生年月日",               cblister_FixedPhrase(fc.age_items)],
-    ["保険者・公費負担者番号", cblister_FixedPhrase(fc.insurer_number_items)],
     ["現在日時",               cblister_FixedPhrase(fc.datetime_items)],
+    ["生年月日",               cblister_FixedPhrase(fc.age_items)],
+    # ["保険者・公費負担者番号", cblister_FixedPhrase(fc.insurer_number_items)],
 ]
 
 # [section-clipboardList-2] ------------------------------------------------------------------------
@@ -235,25 +237,17 @@ fc.clipboardList_listers = [
 # [section-lancherList-1] --------------------------------------------------------------------------
 
 # アプリケーションソフト
-fc.application_items = [
-    # ["Notepad",     keymap.ShellExecuteCommand(None, r"notepad.exe", "", "")],
-    ["Explorer",    keymap.ShellExecuteCommand(None, r"explorer.exe", "", "")],
-    # ["Cmd",         keymap.ShellExecuteCommand(None, r"cmd.exe", "", "")],
-    ["Chrome",      keymap.ShellExecuteCommand(None, r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe", "", "")],
-    # ["MSEdge",      keymap.ShellExecuteCommand(None, r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", "", "")],
-    # ["Firefox",     keymap.ShellExecuteCommand(None, r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe", "", "")],
-    # ["Thunderbird", keymap.ShellExecuteCommand(None, r"C:\Program Files (x86)\Mozilla Thunderbird\thunderbird.exe", "", "")],
-]
-fc.application_items[0][0] = list_formatter.format(fc.application_items[0][0])
+
+
 
 # ウェブサイト
 fc.website_items = [
     ["Google",          keymap.ShellExecuteCommand(None, r"https://www.google.co.jp/", "", "")],
-    ["Facebook",        keymap.ShellExecuteCommand(None, r"https://www.facebook.com/", "", "")],
-    ["Twitter",         keymap.ShellExecuteCommand(None, r"https://twitter.com/", "", "")],
+    # ["Facebook",        keymap.ShellExecuteCommand(None, r"https://www.facebook.com/", "", "")],
+    # ["twitter",         keymap.shellexecutecommand(none, r"https://twitter.com/", "", "")],
     ["Keyhac",          keymap.ShellExecuteCommand(None, r"https://sites.google.com/site/craftware/keyhac-ja", "", "")],
     ["Fakeymacs",       keymap.ShellExecuteCommand(None, r"https://github.com/smzht/fakeymacs", "", "")],
-    ["NTEmacs＠ウィキ", keymap.ShellExecuteCommand(None, r"https://w.atwiki.jp/ntemacs/", "", "")],
+    # ["NTEmacs＠ウィキ", keymap.ShellExecuteCommand(None, r"https://w.atwiki.jp/ntemacs/", "", "")],
 ]
 fc.website_items[0][0] = list_formatter.format(fc.website_items[0][0])
 
@@ -265,9 +259,8 @@ fc.other_items = [
 fc.other_items[0][0] = list_formatter.format(fc.other_items[0][0])
 
 fc.lancherList_listers = [
-    ["App",     cblister_FixedPhrase(fc.application_items)],
-    ["Website", cblister_FixedPhrase(fc.website_items)],
-    ["Other",   cblister_FixedPhrase(fc.other_items)],
+    # ["Website", cblister_FixedPhrase(fc.website_items)],
+    # ["Other",   cblister_FixedPhrase(fc.other_items)],
 ]
 
 # [section-lancherList-2] --------------------------------------------------------------------------
@@ -282,7 +275,7 @@ fc.lancherList_listers = [
 # --------------------------------------------------------------------------------------------------
 
 # VSCode 用のキーの設定を行う
-if 1:
+if 0:
     fc.vscode_target  = ["Code.exe"]
     # vscode.dev 等、ブラウザで動作する VSCode で本機能を無効とするには、次の４行をコメントアウト
     # してください
@@ -324,8 +317,9 @@ if 0:
 # Chrome 系ブラウザで Ctl-x C-b を入力した際、Chrome の拡張機能 Quick Tabs を起動する
 # （vscode_key Extension で vscode_target に Chrome 系ブラウザを指定している場合、そちらの
 #   キー設定が優先されます）
-if 0:
-    fc.quick_tabs_shortcut_key = "A-q"
+if 1:
+    fc.chrome_list= ["vivaldi.exe"]
+    fc.quick_tabs_shortcut_key = "F2"
     exec(readConfigExtension(r"chrome_quick_tabs\config.py"), dict(globals(), **locals()))
 
 # --------------------------------------------------------------------------------------------------

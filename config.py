@@ -539,7 +539,7 @@ def configure(keymap):
     fc.use_alt_shift_digit_key_for_f13_to_f24 = False
 
     # 表示しているウィンドウの中で、一番最近までフォーカスがあったウィンドウに移動するキーを指定する
-    fc.other_window_key = ""
+    fc.other_window_key = "C-^"
 
     # アクティブウィンドウを切り替えるキーの組み合わせ（前、後 の順）を指定する（複数指定可）
     # （内部で A-Tab による切り替えを行っているため、設定するキーは Altキーとの組み合わせとしてください）
@@ -1287,6 +1287,10 @@ def configure(keymap):
         # C-k (kill_line) したときに k 文字が混在することがあるための対策
         keymap.delayedCall(pushToClipboardList, 100)
 
+    def launcherList():
+        self_insert_command("C-x")()
+        keymap.delayedCall(pushToClipboardList, 100)
+
     def pushToClipboardList():
         # clipboard 監視の対象外とするアプリケーションソフトで copy / cut した場合でも
         # クリップボードの内容をクリップボードリストに登録する
@@ -1777,6 +1781,8 @@ def configure(keymap):
     define_key(keymap_emacs, "C-f",        reset_search(reset_undo(reset_counter(mark(repeat(forward_char), True)))))
     define_key(keymap_emacs, "M-b",        reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
     define_key(keymap_emacs, "M-f",        reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True)))))
+    define_key(keymap_emacs, "C-M-b",      reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
+    define_key(keymap_emacs, "C-M-f",      reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True)))))
     define_key(keymap_emacs, "C-p",        reset_search(reset_undo(reset_counter(mark(repeat(previous_line), False)))))
     define_key(keymap_emacs, "C-n",        reset_search(reset_undo(reset_counter(mark(repeat(next_line), True)))))
     define_key(keymap_emacs, "C-a",        reset_search(reset_undo(reset_counter(mark(move_beginning_of_line, False)))))
@@ -2629,6 +2635,11 @@ def configure(keymap):
     # 個人設定ファイルのセクション [section-lancherList-2] を読み込んで実行する
     exec(readConfigPersonal("[section-lancherList-2]"), dict(globals(), **locals()))
 
+    define_key(keymap_emacs, "C-x Tab",    self_insert_command("S-Tab"))
+    define_key(keymap_emacs, "C-x C-i",    self_insert_command("S-Tab"))
+    define_key(keymap_emacs, "C-x C-Tab",  self_insert_command("S-C-Tab"))
+
+    # keymap_global["O-S"]["Tab"] = "S-Tab"
 
     ####################################################################################################
     ## 拡張機能の設定
