@@ -364,7 +364,7 @@ if 0:
 # --------------------------------------------------------------------------------------------------
 
 # 指定したキーを押下したときに IME の状態を表示する
-if 1:
+if 0:
     fc.pop_ime_balloon_key = ["C-Semicolon"]
     # fc.pop_ime_balloon_key = ["O-" + fc.side_of_ctrl_key + "Ctrl"] # Ctrl キーの単押し
     exec(readConfigExtension(r"pop_ime_balloon\config.py"), dict(globals(), **locals()))
@@ -390,6 +390,6 @@ if 1:
 # --------------------------------------------------------------------------------------------------
 
 # MinGW Emacs を起動するキーを指定する
-if 1:
+if 0:
     exec(readConfigExtension(r"mingw_emacs\config.py"), dict(globals(), **locals()))
 
